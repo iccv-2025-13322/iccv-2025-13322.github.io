@@ -112,13 +112,14 @@
     <div class="title_left">
         <h1 style="text-align: center;">IRASim: A Fine-Grained World Model for Robot Manipulation</h1>
         <div class="author-container-1">
-            <div class="grid-item">ICCV 2025 Submission #13322</div>
-
-            <div class="grid-item">
-                <br>
-                <a href="https://anonymous.4open.science/r/iccv-2025-13322" target="_blank" style="font-size: 1.2em; font-weight: bold; color: #d9534f;">
-                    🔗 Anonymous Code
-                </a>
+            <div style="text-align: center; font-size: 24px;">
+                <div><strong>ICCV 2025 Submission #13322</strong></div>
+            
+                <div style="margin-top: 15px; font-size: 20px;">
+                    <a href="https://anonymous.4open.science/r/iccv-2025-13322" style="text-decoration: none; color: blue;">
+                        🔗 <strong>Anonymous Code</strong>
+                    </a>
+                </div>
             </div>
         </div>
 
@@ -140,22 +141,24 @@
     
     <h1 style="text-align: center;">Video Generation as World Model</h1>
     <p>
-        We create an fine-grained real-robot manipulation world model that can simulate robot trajectories in a way that is accurate and almost visually indistinguishable from the real world.
-        With such a world model, agents can interactively control virtual robots to interact with diverse objects in various scenes and perform
-        model-based planning by imagining the outcomes of different proposed candidate trajectories.
+        We introduce IRASim, a new world model trained with a diffusion transformer to capture complex environment dynamics. 
+        We incorporate a novel frame-level action-conditioning module within each transformer block, explicitly modeling and strengthening the alignment between each action and the corresponding frame.
+        IRASim can generate high-fidelity videos to simulate fine-grained robot-object interactions, as shown in Fig. 1.
+        To generate a long-horizon video that completes an entire task, IRASim can be rolled out in an autoregressive manner and maintain temporal consistency across each generated video clip.
+        
     </p>
 
     <div class="barplot">
         <div class="image_container">
             <img src="assets/images/intro.png">
             <div class="caption" style="margin-top: 0.0vw">
-                <p>Figure 1: <strong>Overview of IRASim.</strong>IRASim is an interactive world model that allows users to input an
-                    action trajectory to control the "real robot" in an initial frame.</p>
+                <p>Figure 1: IRASim is a fine-grained world model for robot manipulation. It generates high-fidelity videos that simulate accurate robot-object interactions of a robot executes an action trajectory, given historical observation.
+                    </p>
             </div>
         </div>
     </div>
 
-    <h1 style="text-align: center;">Trajectory-conditioned Video Generation</h1>
+    <!-- <h1 style="text-align: center;">Trajectory-conditioned Video Generation</h1>
 
     <p>
         IRASim is a novel method that generates extremely realistic videos of a robot that executes an action trajectory, starting from a given initial frame.
@@ -176,11 +179,12 @@
             <img src="assets/images/network.png">
             <div class="caption" style="margin-top: 0.0vw">
                 <p>
-                    Figure 2: <strong>Network Architecture of IRASim.</strong> (a) shows the general diffusion transformer architecture of IRASim. The input to IRASim includes the initial frame and the entire trajectory. (b) Frame-level adaptation (Frame-Ada). (c) Video-level adaptation (Video-Ada).
+                    Figure 2: <strong>Network Architecture of IRASim.</strong> (a) shows the general diffusion transformer architecture of IRASim. The input to IRASim
+                    includes the historical frames and the given trajectory. (b) Video-level adaptation (Video-Ada). (c) Frame-level adaptation (Frame-Ada).
                 </p>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <h1 style="text-align: center;">Short Trajectory Prediction</h1>
     <p>
@@ -217,81 +221,23 @@
     <div id="uncurated_long_video_grid"></div>
     <br>
 
-    <h1 style="text-align: center;">Scaling</h1>
+    <h1 style="text-align: center;">Policy Evaluation</h1>
     <p>
-        We follow DiT and train IRASim-Frame-Ada of different model sizes ranging from 33M to 679M. 
-        Results are shown in Fig. 4. 
-        On all three datasets, IRASim scales elegantly with the increase of model sizes and training steps. 
-        This indicates strong potential for increasing model sizes and training steps to further improve the performance.
-    </p>
-    <div class="barplot">
-        <div class="image_container">
-            <img src="assets/images/scale.png">
-            <div class="caption" style="margin-top: 0.0vw; margin-bottom: 0vw; text-align: center;">
-                <p>
-                    Figure 4: <strong>Scaling.</strong> IRASim scales elegantly with the increase of model sizes and training steps
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <h1 style="text-align: center;">
-        Flexible Action Controllability
-    </h1>
-
-    <p>
-        To showcase the flexible action controllability of IRASim, we conduct qualitative experiments in which the virtual robot is guided by trajectories generated from three distinct input sources: a keyboard, a VR controller, and a policy. Importantly, these trajectories exhibit distributions that differ from those in the original dataset.
-        For Language-Table with a 2D translation action space, we use the arrow keys from the keyboard to input action trajectories.
-        For RT-1 and Bridge with a 3D action space, we use a VR controller to collect action trajectories as input.
-        We also train IRASim on our own robot dataset and leverage a well-trained policy with action chunk techniques to predict the trajectories. 
-        We compare the video generated by IRASim with the corresponding real-robot rollout.
-        Videos below show that IRASim can accurately follow trajectories from different input sources, beyond the training domain.
-        Additionally, IRASim is able to robustly handle multimodality in generation,i.e., generating corresponding videos with an identical initial frame but different trajectories. 
-        In the Appendix in the paper, we also demonstrate that IRASim can handle noisy and physically implausible trajectories.
+        Policy Evaluation with IRASim. IRASim can simulate
+        both successful and failed rollouts. Notably, it is able to simulate a
+        bowl slipping from the gripper.
     </p>
 
-    <h2 style="text-align: center; margin: 20px 20px 20px 20px; font-weight: normal; font-size: 1.2vw">"Controlling" the Robot in Language-Table with a Keyboard</h2>
 
-    <div id="app_3D_video_grid">
-        <div class="video_wrapper">
-            <div class="video_container">
-                <video autoplay muted playsinline loop>
-                    <source src="assets/videos/application/app_languagetable.mp4" type="video/mp4">
-                </video>
-                <div class="overlay1 left">Language-Table <br> Prediction <br>16 frames </div>
-                <div class="overlay1 right">Language-Table <br> Prediction <br>16 frames </div>
-            </div>
-        </div>
+    <div class="button-container">
+        <div class="button_click" style="padding: 10px 20px; margin: -30px 20px 20px 20px;" onclick="sample_evaluation_videos()">Click to View More</div>
     </div>
+    <div id="evaluation_video_grid"></div>
 
 
-    <h2 style="text-align: center; margin: 20px 20px 20px 20px; font-weight: normal; font-size: 1.2vw">"Controlling" the Robot in RT-1 with a VR Controller</h2>
 
-    <div id="app_3D_video_grid">
-        <div class="video_wrapper">
-            <div class="video_container">
-                <video autoplay muted playsinline loop>
-                    <source src="assets/videos/application/app_rt1.mp4" type="video/mp4">
-                </video>
-                <div class="overlay1 left">RT-1 <br> Prediction <br> 47 frames </div>
-                <div class="overlay1 right">RT-1 <br> Ground-truth <br> 47 frames </div>
-            </div>
-        </div>
-    </div>
 
-    <h2 style="text-align: center; margin: 20px 20px 20px 20px; font-weight: normal; font-size: 1.2vw">"Controlling" the Robot in Bridge with a VR Controller</h2>
 
-    <div id="app_3D_video_grid">
-        <div class="video_wrapper">
-            <div class="video_container">
-                <video autoplay muted playsinline loop>
-                    <source src="assets/videos/application/app_bridge.mp4" type="video/mp4">
-                </video>
-                <div class="overlay1 left">Bridge <br> Prediction <br> 17 frames</div>
-                <div class="overlay1 right">Bridge <br> Ground-truth <br> 17 frames</div>
-            </div>
-        </div>
-    </div>
 
     <h1 style="text-align: center;margin-bottom: 10px;">Real-Robot Model-based Planning Experiment</h1>
     <p>
@@ -302,223 +248,291 @@
         the real execution video at the top and the predicted video at the bottom. The trajectory is selected from the sampled candidate 
         trajectories based on the similarity between the predicted video and the goal image. Our videos include both successful and failed examples for each method.</p>
 
-    <h2 style="text-align: center;margin-bottom: 10px;">Task: Close Drawer</h1>
+        <h2 style="text-align: center; margin-bottom: 10px;">Task: Close Drawer</h2>
 
-    <div class="container">
-        <!-- First column with Start and Goal Image -->
-        <div class="start-goal">
-            <div class="item">
-                <h3 style="margin-top: 26px;">Initial Image</h3>
-                <img src="assets/videos/planning/close_drawer/start_image.png" alt="Start Image">
-            </div>
-            <div class="item">
-                <img src="assets/videos/planning/close_drawer/target_image.png" alt="Goal Image">
-                <h3>Goal Image</h3>
-                <br>
-            </div>
-        </div>
-
-        <!-- Other columns with videos -->
-        <div class="item">
-            <h3 style="font-size: 18px; white-space: nowrap;">IRASim (ResNet) Success</h3>
-            <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                <source src="assets/videos/planning/close_drawer/resnet/43_success.mp4" type="video/mp4">
-                43_success.mp4
+        <div style="width:75%; margin:0 auto; display:grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: auto auto; gap:10px;">
+          <!-- 合并后的图片单元格，跨越两行 -->
+          <div style="grid-column:1; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <h3 style="margin:0; font-size:14px;">Initial <br> Image</h3>
+            <img src="assets/videos/planning/close_drawer/concat.png" style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+            <h3 style="margin:0; font-size:14px;">Goal Image</h3>
+          </div>
+          
+          <!-- 第2列至第7列的视频单元格 -->
+          <div style="grid-column:2; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (ResNet) Succ.</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/close_drawer/resnet/43_success.mp4" type="video/mp4">
+              43_success.mp4
             </video>
-            <h3> Predict Video </h3>
-        </div>
-        <div class="item">
-            <h3>IRASim (ResNet) Fail</h3>
-            <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                <source src="assets/videos/planning/close_drawer/resnet/48_fail.mp4" type="video/mp4">
-                48_fail.mp4
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <div style="grid-column:3; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (ResNet) Fail</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/close_drawer/resnet/48_fail.mp4" type="video/mp4">
+              48_fail.mp4
             </video>
-            <h3> Predict Video </h3>
-        </div>
-        <div class="item">
-            <h3>IRASim (MSE) Success</h3>
-            <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                <source src="assets/videos/planning/close_drawer/mse/45_success.mp4" type="video/mp4">
-                45_success.mp4
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <div style="grid-column:4; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (MSE) Succ.</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/close_drawer/mse/45_success.mp4" type="video/mp4">
+              45_success.mp4
             </video>
-            <h3> Predict Video </h3>
-        </div>
-        <div class="item">
-            <h3>IRASim (MSE) Fail</h3>
-            <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                <source src="assets/videos/planning/close_drawer/mse/30_fail.mp4" type="video/mp4">
-                30_fail.mp4
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <div style="grid-column:5; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (MSE) Fail</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/close_drawer/mse/30_fail.mp4" type="video/mp4">
+              30_fail.mp4
             </video>
-            <h3> Predict Video </h3>
-        </div>
-        <div class="item">
-            <h3>Random Success</h3>
-            <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                <source src="assets/videos/planning/close_drawer/random/43_success.mp4" type="video/mp4">
-                43_success.mp4
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <div style="grid-column:6; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">Random Succ.</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/close_drawer/random/43_success.mp4" type="video/mp4">
+              43_success.mp4
             </video>
-            <h3> Predict Video </h3>
-        </div>
-        <div class="item">
-            <h3>Random Fail</h3>
-            <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                <source src="assets/videos/planning/close_drawer/random/30_fail.mp4" type="video/mp4">
-                30_fail.mp4
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <div style="grid-column:7; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">Random Fail</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/close_drawer/random/30_fail.mp4" type="video/mp4">
+              30_fail.mp4
             </video>
-            <h3> Predict Video </h3>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
         </div>
-    </div>
-
-    <h2 style="text-align: center;margin-bottom: 10px;">Task: Place Mandarin on Green Plate</h1>
-
-        <div class="container">
-            <!-- First column with Start and Goal Image -->
-            <div class="start-goal">
-                <div class="item">
-                    <h3 style="margin-top: 26px;">Initial Image</h3>
-                    <img src="assets/videos/planning/place_green/start_image.png" alt="Start Image">
-                </div>
-                <div class="item">
-                    <img src="assets/videos/planning/place_green/target_image.png" alt="Goal Image">
-                    <h3>Goal Image</h3>
-                </div>
-            </div>
-    
-            <!-- Other columns with videos -->
-            <div class="item">
-                <h3 style="font-size: 18px; white-space: nowrap;">IRASim (ResNet) Success</h3>
-                <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                    <source src="assets/videos/planning/place_green/resnet/39_success.mp4" type="video/mp4">
-                    43_success.mp4
-                </video>
-                <h3> Predict Video </h3>
-            </div>
-            <div class="item">
-                <h3>IRASim (ResNet) Fail</h3>
-                <h3> Execute Video </h3>
-                <video autoplay muted loop>
-                    <source src="assets/videos/planning/place_green/resnet/46_fail.mp4" type="video/mp4">
-                    48_fail.mp4
-                </video>
-                <h3> Predict Video </h3>
-            </div>
-            <div class="item">
-                <h3>IRASim (MSE) Success</h3>
-                <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                    <source src="assets/videos/planning/place_green/mse/40_success.mp4" type="video/mp4">
-                    45_success.mp4
-                </video>
-                <h3> Predict Video </h3>
-            </div>
-            <div class="item">
-                <h3>IRASim (MSE) Fail</h3>
-                <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                    <source src="assets/videos/planning/place_green/mse/44_fail.mp4" type="video/mp4">
-                    30_fail.mp4
-                </video>
-                <h3> Predict Video </h3>
-            </div>
-            <div class="item">
-                <h3>Random Success</h3>
-                <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                    <source src="assets/videos/planning/place_green/random/42_success.mp4" type="video/mp4">
-                    43_success.mp4
-                </video>
-                <h3> Predict Video </h3>
-            </div>
-            <div class="item">
-                <h3>Random Fail</h3>
-                <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                    <source src="assets/videos/planning/place_green/random/16_fail.mp4" type="video/mp4">
-                    30_fail.mp4
-                </video>
-                <h3> Predict Video </h3>
-            </div>
-        </div>
-
-        <h2 style="text-align: center;margin-bottom: 10px;">Task: Place Mandarin on Red Plate</h1>
-
-            <div class="container">
-                <!-- First column with Start and Goal Image -->
-                <div class="start-goal">
-                    <div class="item">
-                        <h3 style="margin-top: 26px;">Initial Image</h3>
-                        <img src="assets/videos/planning/place_red/start_image.png" alt="Start Image">
-                    </div>
-                    <div class="item">
-                        <img src="assets/videos/planning/place_red/target_image.png" alt="Goal Image">
-                        <h3>Goal Image</h3>
-                    </div>
-                </div>
         
-                <!-- Other columns with videos -->
-                <div class="item">
-                    <h3 style="font-size: 18px; white-space: nowrap;">IRASim (ResNet) Success</h3>
-                    <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                        <source src="assets/videos/planning/place_red/resnet/30_success.mp4" type="video/mp4">
-                        43_success.mp4
-                    </video>
-                    <h3> Predict Video </h3>
-                </div>
-                <div class="item">
-                    <h3>IRASim (ResNet) Fail</h3>
-                    <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                        <source src="assets/videos/planning/place_red/resnet/44_fail.mp4" type="video/mp4">
-                        48_fail.mp4
-                    </video>
-                    <h3> Predict Video </h3>
-                </div>
-                <div class="item">
-                    <h3>IRASim (MSE) Success</h3>
-                    <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                        <source src="assets/videos/planning/place_red/mse/32_success.mp4" type="video/mp4">
-                        45_success.mp4
-                    </video>
-                    <h3> Predict Video </h3>
-                </div>
-                <div class="item">
-                    <h3>IRASim (MSE) Fail</h3>
-                    <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                        <source src="assets/videos/planning/place_red/mse/21_fail.mp4" type="video/mp4">
-                        30_fail.mp4
-                    </video>
-                    <h3> Predict Video </h3>
-                </div>
-                <div class="item">
-                    <h3>Random Success</h3>
-                    <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                        <source src="assets/videos/planning/place_red/random/31_success.mp4" type="video/mp4">
-                        43_success.mp4
-                    </video>
-                    <h3> Predict Video </h3>
-                </div>
-                <div class="item">
-                    <h3>Random Fail</h3>
-                    <h3> Execute Video </h3>
-            <video autoplay muted loop>
-                        <source src="assets/videos/planning/place_red/random/2_fail.mp4" type="video/mp4">
-                        30_fail.mp4
-                    </video>
-                    <h3> Predict Video </h3>
+
+        <h2 style="text-align: center; margin-bottom: 10px;">Task: Place Mandarin on Green Plate</h2>
+
+        <div style="width:75%; margin:0 auto; display:grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: auto auto; gap:10px;">
+          <!-- Combined cell for Initial and Goal Image -->
+          <div style="grid-column:1; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <h3 style="margin:0; font-size:14px;">Initial <br> Image</h3>
+            <img src="assets/videos/planning/place_green/concat.png" style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+            <h3 style="margin:0; font-size:14px;">Goal Image</h3>
+          </div>
+          
+          <!-- IRASim (ResNet) Success -->
+          <div style="grid-column:2; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (ResNet) Success</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/place_green/resnet/39_success.mp4" type="video/mp4">
+              39_success.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <!-- IRASim (ResNet) Fail -->
+          <div style="grid-column:3; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (ResNet) Fail</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/place_green/resnet/46_fail.mp4" type="video/mp4">
+              46_fail.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <!-- IRASim (MSE) Success -->
+          <div style="grid-column:4; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (MSE) Success</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/place_green/mse/40_success.mp4" type="video/mp4">
+              40_success.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <!-- IRASim (MSE) Fail -->
+          <div style="grid-column:5; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (MSE) Fail</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/place_green/mse/44_fail.mp4" type="video/mp4">
+              44_fail.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <!-- Random Success -->
+          <div style="grid-column:6; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">Random Success</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/place_green/random/42_success.mp4" type="video/mp4">
+              42_success.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+          
+          <!-- Random Fail -->
+          <div style="grid-column:7; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">Random Fail</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+              <source src="assets/videos/planning/place_green/random/16_fail.mp4" type="video/mp4">
+              16_fail.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+          </div>
+        </div>
+        
+
+        <h2 style="text-align: center; margin-bottom: 10px;">Task: Place Mandarin on Red Plate</h2>
+
+        <div style="width:75%; margin:0 auto; display:grid; grid-template-columns: repeat(7, 1fr); grid-template-rows: auto auto; gap:10px;">
+        <!-- Combined cell for Initial and Goal Image -->
+        <div style="grid-column:1; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <h3 style="margin:0; font-size:14px;">Initial <br> Image</h3>
+            <img src="assets/videos/planning/place_red/concat.png" style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+            <h3 style="margin:0; font-size:14px;">Goal Image</h3>
+        </div>
+        
+        <!-- IRASim (ResNet) Success -->
+        <div style="grid-column:2; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (ResNet) Success</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+            <source src="assets/videos/planning/place_red/resnet/30_success.mp4" type="video/mp4">
+            30_success.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+        </div>
+        
+        <!-- IRASim (ResNet) Fail -->
+        <div style="grid-column:3; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (ResNet) Fail</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+            <source src="assets/videos/planning/place_red/resnet/44_fail.mp4" type="video/mp4">
+            44_fail.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+        </div>
+        
+        <!-- IRASim (MSE) Success -->
+        <div style="grid-column:4; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (MSE) Success</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+            <source src="assets/videos/planning/place_red/mse/32_success.mp4" type="video/mp4">
+            32_success.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+        </div>
+        
+        <!-- IRASim (MSE) Fail -->
+        <div style="grid-column:5; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">IRASim (MSE) Fail</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+            <source src="assets/videos/planning/place_red/mse/21_fail.mp4" type="video/mp4">
+            21_fail.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+        </div>
+        
+        <!-- Random Success -->
+        <div style="grid-column:6; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">Random Success</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+            <source src="assets/videos/planning/place_red/random/31_success.mp4" type="video/mp4">
+            31_success.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+        </div>
+        
+        <!-- Random Fail -->
+        <div style="grid-column:7; grid-row:1 / span 2; text-align:center; padding:5px;">
+            <div style="margin:0; font-size:14px;">Random Fail</div>
+            <div style="margin:0; font-size:14px;">Execute Video</div>
+            <video autoplay muted loop style="width:100%; height:300px; object-fit:contain; display:block; margin:0 auto;">
+            <source src="assets/videos/planning/place_red/random/2_fail.mp4" type="video/mp4">
+            2_fail.mp4
+            </video>
+            <div style="margin:0; font-size:14px;">Predict Video</div>
+        </div>
+        </div>
+
+
+            <h1 style="text-align: center;">
+                Flexible Action Controllability
+            </h1>
+        
+            <p>
+                In this section, we perform qualitative experiments in which we ''control'' the virtual robot in two datasets, Language-Table and RT-1, using trajectories collected with two distinct input sources: a keyboard and a VR controller.
+                Notably, the trajectories collected through these input sources exhibit distributions that deviate from those in the original dataset.
+                For Language-Table with a 2D translation action space, we use the arrow keys on the keyboard to input action trajectories.
+                For RT-1 with a 3D action space, we use a VR controller to collect action trajectories as input.
+                Specifically, we prompt IRASim with an image from each dataset and a trajectory collected with the keyboard or VR controller.
+                IRASim is able to follow trajectories collected with different input sources and simulate robot-object interaction in a realistic and reasonable way. 
+                More importantly, it is able to robustly handle multimodality in generation.
+            </p>
+        
+            <h2 style="text-align: center; margin: 20px 20px 20px 20px; font-weight: normal; font-size: 1.2vw">"Controlling" the Robot in Language-Table with a Keyboard</h2>
+        
+            <div id="app_3D_video_grid">
+                <div class="video_wrapper">
+                    <div class="video_container">
+                        <video autoplay muted playsinline loop>
+                            <source src="assets/videos/application/app_languagetable.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay1 left">Language-Table <br> Prediction <br>16 frames </div>
+                        <div class="overlay1 right">Language-Table <br> Prediction <br>16 frames </div>
+                    </div>
                 </div>
             </div>
-
+        
+        
+            <h2 style="text-align: center; margin: 20px 20px 20px 20px; font-weight: normal; font-size: 1.2vw">"Controlling" the Robot in RT-1 with a VR Controller</h2>
+        
+            <div id="app_3D_video_grid">
+                <div class="video_wrapper">
+                    <div class="video_container">
+                        <video autoplay muted playsinline loop>
+                            <source src="assets/videos/application/app_rt1.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay1 left">RT-1 <br> Prediction <br> 47 frames </div>
+                        <div class="overlay1 right">RT-1 <br> Ground-truth <br> 47 frames </div>
+                    </div>
+                </div>
+            </div>
+        
+            <h2 style="text-align: center; margin: 20px 20px 20px 20px; font-weight: normal; font-size: 1.2vw">"Controlling" the Robot in Bridge with a VR Controller</h2>
+        
+            <div id="app_3D_video_grid">
+                <div class="video_wrapper">
+                    <div class="video_container">
+                        <video autoplay muted playsinline loop>
+                            <source src="assets/videos/application/app_bridge.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay1 left">Bridge <br> Prediction <br> 17 frames</div>
+                        <div class="overlay1 right">Bridge <br> Ground-truth <br> 17 frames</div>
+                    </div>
+                </div>
+            </div>
     
 </div>
 <script src="sampleVideos.js"></script>
@@ -528,6 +542,9 @@
     });
     document.addEventListener('DOMContentLoaded', (event) => {
         sample_long_videos(); 
+    });
+    document.addEventListener('DOMContentLoaded', (event) => {
+        sample_evaluation_videos(); 
     });
 </script>
 <script type="text/javascript">

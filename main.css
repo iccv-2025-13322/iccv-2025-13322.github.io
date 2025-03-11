@@ -138,6 +138,38 @@ body {
     transition: transform 0.5s ease; /* Smooth transition for dimming */
 }
 
+#evaluation_video_grid {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+#evaluation_video_grid > .video_wrapper {
+    width: 16.5%;
+    padding: 1px; /* 添加内边距 */
+    box-sizing: border-box; /* 确保内边距包含在宽度内 */
+}
+
+#evaluation_video_grid > .video_wrapper > .video_container {
+    display: grid;
+    position: relative;
+    overflow: hidden;
+}
+
+#evaluation_video_grid > .video_wrapper > .video_container > video {
+    width: 100%;
+    height: auto;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 1px;
+    padding: 0;
+    display: block; /* Ensures the video fills its container */
+    transition: transform 0.5s ease; /* Smooth transition for dimming */
+}
+
 #uncurated_long_video_grid {
     width: 75%;
     display: flex;
@@ -832,31 +864,33 @@ hr.rounded {
 }
 
 .barplot > .image_container {
-    max-width: 60%;
-    margin-top: auto;
-    margin-bottom: auto;
+    display: flex;
+    flex-direction: column; /* 使图片和标题垂直排列 */
+    justify-content: center; /* 垂直居中 */
+    align-items: center; /* 水平居中 */
+    max-width: 100%;
+    height: auto; /* 确保容器自适应高度 */
+    margin: auto; /* 水平居中整个容器（如果适用） */
 }
 
 .barplot > .image_container > img {
     max-width: 100%;
-    max-height: 100%;
-    margin-top: 0.7vw;
+    height: auto; /* 保持图片比例 */
 }
 
 .barplot > .image_container > .caption {
-    margin-left: 0.7vw;
-    margin-bottom: 1.0vw;
+    margin-top: 0.5vw; /* 在图片和文字之间留一点间距 */
+    text-align: center; /* 确保文字居中 */
     max-width: 100%;
-    max-height: 100%;
-    position: relative;
 }
 
 .barplot > .image_container > .caption > p {
-    width: 100% !important;
-    color: rgba(0, 0, 0, 0.5) !important;
-    font-family: "Avenir Next",Gelasio,Helvetica,sans-serif !important;
-    font-size: 1.0vw !important;
-    font-weight: 500 !important;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.5);
+    font-family: "Avenir Next", Gelasio, Helvetica, sans-serif;
+    font-size: 1.0vw;
+    font-weight: 500;
+    margin: 0; /* 避免默认的 p 标签外边距影响布局 */
 }
 
 
@@ -1384,8 +1418,10 @@ html.w-mod-touch * {
 }
 
 .container {
-    padding-left: 14px
+    max-width: 70%;
+    margin: 0 auto; /* 上下外边距为0，左右自动 */
 }
+
 
 .div-block {
     display: block;

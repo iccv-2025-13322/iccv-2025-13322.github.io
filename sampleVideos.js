@@ -102,6 +102,54 @@ async function sample_long_videos() {
     });
 }
 
+async function sample_evaluation_videos() {
+    console.log('Sample button clicked'); // 调试信息
+
+    const videoGrid = document.getElementById('evaluation_video_grid');
+    videoGrid.innerHTML = '';
+
+    const folders = [
+        { video: 'assets/videos/evaluation/videos'},
+    ];
+    const totalVideos = 50;
+
+    // 获取8个唯一随机索引
+    const indices = new Set();
+    while (indices.size < 18) {
+        indices.add(Math.floor(Math.random() * totalVideos)+1);
+    }
+
+    console.log('Selected indices:', indices); // 调试信息
+
+    // 清空视频网格
+    videoGrid.innerHTML = '';
+
+    function createVideoElement(videoPath) {
+        const videoWrapper = document.createElement('div');
+        videoWrapper.className = 'video_wrapper';
+        videoWrapper.innerHTML = `
+            <div class="video_container">
+                <video autoplay muted playsinline loop>
+                    <source src="${videoPath}" type="video/mp4">
+                </video>
+            </div>
+        `;
+        return videoWrapper;
+    }
+
+    folders.forEach(folder => {
+        indices.forEach(index => {
+            const videoPath = `${folder.video}/${index}.mp4`;
+
+            console.log('Loading videos:', videoPath); 
+
+            const videoWrapper = createVideoElement(videoPath);
+
+            videoGrid.appendChild(videoWrapper);
+        });
+    });
+}
+
 async function sample_longest_videos() {
     console.log('Sample button clicked'); // 调试信息
 
