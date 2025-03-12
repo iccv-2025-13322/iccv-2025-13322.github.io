@@ -159,7 +159,8 @@
     <hr class="rounded">
     <div id="overview">
 
-        <h1 style="text-align: center;  margin-top: 30px;">Video Generation as World Model</h1>
+        <h1 style="text-align: center; margin-top: 30px; font-size: 30px;">Video Generation as World Model</h1>
+
         <p>
             We introduce IRASim, a new world model trained with a diffusion transformer to capture complex environment
             dynamics.
@@ -213,7 +214,7 @@
         </div>
     </div> -->
 
-        <h1 style="text-align: center;  margin-top: 30px;">Short Trajectory Prediction</h1>
+        <h1 style="text-align: center;  margin-top: 30px; font-size: 30px;">Short Trajectory Prediction</h1>
         <p>
             <strong>Uncurated</strong> qualitative results of short trajectories are shown below.
             Click the <em>Click to View More</em> button to display another random subset from 100 unpicked samples for
@@ -231,7 +232,7 @@
         <br>
 
 
-        <h1 style="text-align: center; margin-top: 30px;">Long Trajectory Prediction</h1>
+        <h1 style="text-align: center; margin-top: 30px; font-size: 30px;">Long Trajectory Prediction</h1>
         <p>
             <strong>Uncurated</strong> qualitative results of long trajectories are shown below.
             Click the <em>Click to View More</em> button to display another random subset from 100 unpicked episodes for
@@ -256,7 +257,7 @@
         <div id="uncurated_long_video_grid"></div>
         <br>
 
-        <h1 style="text-align: center;  margin-top: 30px;">Policy Evaluation</h1>
+        <h1 style="text-align: center;  margin-top: 30px; font-size: 30px;">Policy Evaluation</h1>
         <p>
             Policy Evaluation with IRASim. IRASim can simulate
             both successful and failed rollouts. Notably, it is able to simulate a
@@ -272,7 +273,7 @@
 
 
 
-        <h1 style="text-align: center;  margin-top: 30px;">Real-Robot Model-based Planning Experiment</h1>
+        <h1 style="text-align: center;  margin-top: 30px; font-size: 30px;">Real-Robot Model-based Planning Experiment</h1>
         <p>
             We conduct a real-robot model-based planning experiment to show the usefulness of IRASim for manipulation
             task. The experiment demonstrates that IRASim can effectively plan trajectories to finish manipulation tasks
@@ -285,165 +286,171 @@
             The evaluation covers three tasks: closing a drawer, placing mandarin on green plate, and placing mandarin on red plate.
         </p>
 
-        <div style="width:75%; margin:0 auto; display:grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: auto auto; gap: 10px;">
-            <div style="grid-column:1; grid-row:1 / span 2; text-align:center; ">
-                <div style="margin:0; font-size:14px;">IRASim (ResNet) Succ.</div>
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/close_drawer/resnet/43_success.mp4" type="video/mp4">
-                    43_success.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:2; grid-row:1 / span 2; text-align:center; ">
-                <div style="margin:0; font-size:14px;">IRASim (ResNet) Fail</div>
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/close_drawer/resnet/48_fail.mp4" type="video/mp4">
-                    48_fail.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:3; grid-row:1 / span 2; text-align:center; ">
-                <div style="margin:0; font-size:14px;">IRASim (MSE) Succ.</div>
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/close_drawer/mse/45_success.mp4" type="video/mp4">
-                    45_success.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:4; grid-row:1 / span 2; text-align:center; ">
-                <div style="margin:0; font-size:14px;">IRASim (MSE) Fail</div>
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/close_drawer/mse/30_fail.mp4" type="video/mp4">
-                    30_fail.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:5; grid-row:1 / span 2; text-align:center; ">
-                <div style="margin:0; font-size:14px;">Random Succ.</div>
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/close_drawer/random/43_success.mp4" type="video/mp4">
-                    43_success.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:6; grid-row:1 / span 2; text-align:center; ">
-                <div style="margin:0; font-size:14px;">Random Fail</div>
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/close_drawer/random/30_fail.mp4" type="video/mp4">
-                    30_fail.mp4
-                </video>
-            </div>
-        
-            <!-- task 2 -->
-            <div style="grid-column:1; grid-row:3 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_green/resnet/39_success.mp4" type="video/mp4">
-                    39_success.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:2; grid-row:3 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_green/resnet/46_fail.mp4" type="video/mp4">
-                    46_fail.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:3; grid-row:3 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_green/mse/40_success.mp4" type="video/mp4">
-                    40_success.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:4; grid-row:3 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_green/mse/44_fail.mp4" type="video/mp4">
-                    44_fail.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:5; grid-row:3 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_green/random/42_success.mp4" type="video/mp4">
-                    42_success.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:6; grid-row:3 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_green/random/16_fail.mp4" type="video/mp4">
-                    16_fail.mp4
-                </video>
-            </div>
-        
-            <!-- task 3 -->
-            <div style="grid-column:1; grid-row:5 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_red/resnet/30_success.mp4" type="video/mp4">
-                    30_success.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:2; grid-row:5 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_red/resnet/44_fail.mp4" type="video/mp4">
-                    44_fail.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:3; grid-row:5 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_red/mse/32_success.mp4" type="video/mp4">
-                    32_success.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:4; grid-row:5 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_red/mse/21_fail.mp4" type="video/mp4">
-                    21_fail.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:5; grid-row:5 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_red/random/31_success.mp4" type="video/mp4">
-                    31_success.mp4
-                </video>
-            </div>
-        
-            <div style="grid-column:6; grid-row:5 / span 2; text-align:center; ">
-                <video autoplay muted loop
-                    style="width:100%; height:350px; object-fit:contain; display:block; margin:0 auto;">
-                    <source src="assets/videos/planning/place_red/random/2_fail.mp4" type="video/mp4">
-                    2_fail.mp4
-                </video>
-            </div>
-        </div>
-        
+        <div style="width:75%; margin:0 auto;">
 
+            <!-- 带文字说明的区域 -->
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px;">
+              <div style="text-align:center; height:50px; display:flex; align-items:center; justify-content:center;">
+                <p style="margin:0; font-size:16px; font-weight:bold;">
+                  IRASim (ResNet) <br>
+                  <span style="color:green;">Success</span>
+                </p>
+              </div>
+              <div style="text-align:center; height:50px; display:flex; align-items:center; justify-content:center;">
+                <p style="margin:0; font-size:16px; font-weight:bold;">
+                  IRASim (ResNet) <br>
+                  <span style="color:red;">Failure</span>
+                </p>
+              </div>
+              <div style="text-align:center; height:50px; display:flex; align-items:center; justify-content:center;">
+                <p style="margin:0; font-size:16px; font-weight:bold;">
+                  IRASim (MSE) <br>
+                  <span style="color:green;">Success</span>
+                </p>
+              </div>
+              <div style="text-align:center; height:50px; display:flex; align-items:center; justify-content:center;">
+                <p style="margin:0; font-size:16px; font-weight:bold;">
+                  IRASim (MSE) <br>
+                  <span style="color:red;">Failure</span>
+                </p>
+              </div>
+              <div style="text-align:center; height:50px; display:flex; align-items:center; justify-content:center;">
+                <p style="margin:0; font-size:16px; font-weight:bold;">
+                  Random <br>
+                  <span style="color:green;">Success</span>
+                </p>
+              </div>
+              <div style="text-align:center; height:50px; display:flex; align-items:center; justify-content:center;">
+                <p style="margin:0; font-size:16px; font-weight:bold;">
+                  Random <br>
+                  <span style="color:red;">Failure</span>
+                </p>
+              </div>
+            </div>
+          
+            <!-- 第一组视频（对应带文字说明的那一组） -->
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0px 10px;">
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/close_drawer/resnet/43_success.mp4" type="video/mp4">
+                  43_success.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/close_drawer/resnet/48_fail.mp4" type="video/mp4">
+                  48_fail.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/close_drawer/mse/45_success.mp4" type="video/mp4">
+                  45_success.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/close_drawer/mse/30_fail.mp4" type="video/mp4">
+                  30_fail.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/close_drawer/random/43_success.mp4" type="video/mp4">
+                  43_success.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/close_drawer/random/30_fail.mp4" type="video/mp4">
+                  30_fail.mp4
+                </video>
+              </div>
+            </div>
+          
+            <!-- 第二组视频（例如 task 2，没有文字） -->
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0px 10px;">
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_green/resnet/39_success.mp4" type="video/mp4">
+                  39_success.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_green/resnet/46_fail.mp4" type="video/mp4">
+                  46_fail.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_green/mse/40_success.mp4" type="video/mp4">
+                  40_success.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_green/mse/44_fail.mp4" type="video/mp4">
+                  44_fail.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_green/random/42_success.mp4" type="video/mp4">
+                  42_success.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_green/random/16_fail.mp4" type="video/mp4">
+                  16_fail.mp4
+                </video>
+              </div>
+            </div>
+          
+            <!-- 第三组视频（例如 task 3，没有文字） -->
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 0px 10px;">
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_red/resnet/30_success.mp4" type="video/mp4">
+                  30_success.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_red/resnet/44_fail.mp4" type="video/mp4">
+                  44_fail.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_red/mse/32_success.mp4" type="video/mp4">
+                  32_success.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_red/mse/21_fail.mp4" type="video/mp4">
+                  21_fail.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_red/random/31_success.mp4" type="video/mp4">
+                  31_success.mp4
+                </video>
+              </div>
+              <div>
+                <video autoplay muted loop style="width:100%; height:280px; object-fit:contain; display:block;">
+                  <source src="assets/videos/planning/place_red/random/2_fail.mp4" type="video/mp4">
+                  2_fail.mp4
+                </video>
+              </div>
+            </div>
+          
+          </div>
 
-
-
-        <h1 style="text-align: center;  margin-top: 30px;">
+        <h1 style="text-align: center;  margin-top: 30px; font-size: 30px;">
             Flexible Action Controllability
         </h1>
 

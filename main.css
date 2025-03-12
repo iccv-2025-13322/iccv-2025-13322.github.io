@@ -75,7 +75,7 @@ body {
 
 
 #app_3D_video_grid {
-    width: 60%;
+    width: 40%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
